@@ -103,7 +103,7 @@
 
           var canvas2 = document.getElementById('newCanvas'); //this creates a call to mycanvas, by using javascript to describe my HTML
           var ctx2 = canvas2.getContext('2d'); //this allows the javascript to see the image in the canvas1
-          ctx2.drawImage(img,0,0); //this code will transfer my same image to the second canvas
+          ctx2.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //this code will transfer my same image to the second canvas
          
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           
@@ -138,15 +138,7 @@
         <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
       </div>
       <div id="messageDisplayArea"></div>
-      <canvas id="newCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
-        <script> /* This script initiates the cavas and puts the text on the canvas "newCanvas" */
-        var newcanvas = document.getElementById('newCanvas');
-        var newcontext = canvas.getContext("2d");
-        context.font = '20pt Calibri';
-        context.fillStyle = "black";
-        context.fillText("New image will go here", 10, 20);
-      </script>
-
+     
       <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
       <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
         var canvas = document.getElementById('myCanvas');
@@ -154,6 +146,14 @@
         context.font = '20pt Calibri';
         context.fillStyle = "black";
         context.fillText("Original image will go here", 10, 20);
+      </script>
+     <canvas id="newCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+        <script> /* This script initiates the cavas and puts the text on the canvas "newCanvas" */
+        var newcanvas = document.getElementById('newCanvas');
+        var newcontext = canvas.getContext("2d");
+        context.font = '20pt Calibri';
+        context.fillStyle = "black";
+        context.fillText("New image will go here", 10, 20);
       </script>
 
     </div><!-- /content -->
