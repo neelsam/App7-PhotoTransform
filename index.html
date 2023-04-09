@@ -110,7 +110,6 @@
           for (var i = 0; i < data.length; i += 4) { //I used this for loop to get my pixels modified to only display blue
               data[i] = 0; // this allowed me to identify the red
               data[i + 1] = 0; // this allowed me to identify the green
-              data[i + 2] = 255; //this creates the blue gradient
           }
           ctx2.putImageData(imgData, 0, 0); //this was the call function so that the new image would display the new image.
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
