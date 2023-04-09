@@ -97,13 +97,8 @@
           /*This finally draws the image onto the first drawing canvas. The specific canvas is referred to by "context". This is established down in the HTML part of the file just under the first <canvas> tag. If we weren't worried about fixing an iPhone bug we would use context.drawImage(image, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500) instead of drawImageIOSFix */
         
           drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //this code was provided to help with mobile
-
-          /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
-          /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
           var canvas2 = document.getElementById('newCanvas'); //this creates a call to mycanvas, by using javascript to describe my HTML
           var ctx2 = canvas2.getContext('2d'); //this allows the javascript to see the image in the canvas1
-          //ctx2.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //this code will transfer my same image to the second canvas 
           // I could not figure this part out, so I used CHATGPT to give me a tutorial on how to learn how to change pixel color, by asking CHATGPT, "How do I eliminate my red and green values from my picture in javascript" CHATGPT explained how to do it with good steps.
           var imgData = context.getImageData(0, 0, canvas.width, canvas.height); //this allows the entire image to get all information into javascript
           var data = imgData.data; //this allows us to get every pixel from our image
@@ -112,11 +107,6 @@
               data[i + 1] = 0; // this allowed me to identify the green
           }
           ctx2.putImageData(imgData, 0, 0); //this was the call function so that the new image would display the new image.
-          /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
-          
-          
-          
-          
         } // end of img.onload
         
         img.src = reader.result;
