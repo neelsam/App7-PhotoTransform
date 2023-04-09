@@ -103,15 +103,16 @@
 
           var canvas2 = document.getElementById('newCanvas'); //this creates a call to mycanvas, by using javascript to describe my HTML
           var ctx2 = canvas2.getContext('2d'); //this allows the javascript to see the image in the canvas1
-          ctx2.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //this code will transfer my same image to the second canvas 
+          //ctx2.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //this code will transfer my same image to the second canvas 
           // I could not figure this part out, so I used CHATGPT to give me a tutorial on how to learn how to change pixel color, by asking CHATGPT, "How do I eliminate my red and green values from my picture in javascript" CHATGPT explained how to do it with good steps.
-          var imageData = context.getImageData(0, 0, canvas.width, canvas.height); //this allows the entire image to get all information into javascript
-          var pixels = imageData.data; //this allows us to get every pixel from our image
-          for (var i = 0; i < pixels.length; i += 4) { //I used this for loop to get my pixels modified to only display blue
-              pixels[i] = 0; // this allowed me to identify the red
-              pixels[i + 1] = 0; // this allowed me to identify the green
+          var imgData = context.getImageData(0, 0, canvas.width, canvas.height); //this allows the entire image to get all information into javascript
+          var data = imgData.data; //this allows us to get every pixel from our image
+          for (var i = 0; i < data.length; i += 4) { //I used this for loop to get my pixels modified to only display blue
+              data[i] = 0; // this allowed me to identify the red
+              data[i + 1] = 0; // this allowed me to identify the green
+              data[i + 2] = 255; //this creates the blue gradient
           }
-          ctx.putImageData(imageData, 0, 0); //this was the call function so that the new image would display the new image.
+          ctx2.putImageData(imageData, 0, 0); //this was the call function so that the new image would display the new image.
           //ctx2.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //this code will transfer my same image to the second canvas 
 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
