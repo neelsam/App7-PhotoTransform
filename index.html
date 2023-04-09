@@ -96,15 +96,23 @@
         img.onload = function() {
           /*This finally draws the image onto the first drawing canvas. The specific canvas is referred to by "context". This is established down in the HTML part of the file just under the first <canvas> tag. If we weren't worried about fixing an iPhone bug we would use context.drawImage(image, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500) instead of drawImageIOSFix */
         
-          drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
+          drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //this code was provided to help with mobile
 
           /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
           /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
           var canvas2 = document.getElementById('newCanvas'); //this creates a call to mycanvas, by using javascript to describe my HTML
           var ctx2 = canvas2.getContext('2d'); //this allows the javascript to see the image in the canvas1
-          ctx2.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //this code will transfer my same image to the second canvas
-         
+          ctx2.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500); //this code will transfer my same image to the second canvas 
+          // I could not figure this part out, so I used CHATGPT to give me a tutorial on how to learn how to change pixel color, by asking CHATGPT, "How do I eliminate my red and green values from my picture in javascript" CHATGPT explained how to do it with good steps.
+          var imageData = context.getImageData(0, 0, canvas.width, canvas.height); //this allows the entire image to get all information into javascript
+          var pixels = imageData.data; //this allows us to get every pixel from our image
+          for (var i = 0; i < pixels.length; i += 4) { //I used this for loop to get my pixels modified to only display blue
+              pixels[i] = 0; // this allowed me to identify the red
+              pixels[i + 1] = 0; // this allowed me to identify the green
+          }
+          newContext.putImageData(imageData, 0, 0); //this was the call function so that the new image would display the new image.
+ 
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           
           
@@ -139,21 +147,21 @@
       </div>
       <div id="messageDisplayArea"></div>
      
-      <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+      <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> <!- this is the creation of the original image canvas -->
       <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
-        var canvas = document.getElementById('myCanvas');
-        var context = canvas.getContext("2d");
-        context.font = '20pt Calibri';
-        context.fillStyle = "black";
-        context.fillText("Original image will go here", 10, 20);
+        var canvas = document.getElementById('myCanvas'); //this allows for the modification of the canvas
+        var context = canvas.getContext("2d"); //this creates context for the canvas to change
+        context.font = '20pt Calibri'; //this changes the canvas font
+        context.fillStyle = "black"; //this changes the text color
+        context.fillText("Original image will go here", 10, 20); //this creates context for what the box will be
       </script>
-     <canvas id="newCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+     <canvas id="newCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> <!- this is the creation of the new image canvas -->
         <script> /* This script initiates the cavas and puts the text on the canvas "newCanvas" */
-        var newcanvas = document.getElementById('newCanvas');
-        var newcontext = newcanvas.getContext("2d");
-        newcontext.font = '20pt Calibri';
-        newcontext.fillStyle = "black";
-        newcontext.fillText("New Blue Modified Image Will Appear Here", 10, 20);
+        var newcanvas = document.getElementById('newCanvas'); //this allows the modification of the canvas
+        var newcontext = newcanvas.getContext("2d"); //this creates the context for the newcanvas
+        newcontext.font = '20pt Calibri'; //this changes the text font
+        newcontext.fillStyle = "black"; //this changes the text color
+        newcontext.fillText("New Blue Modified Image Will Appear Here", 10, 20); //this writes what will be in the box
       </script>
 
     </div><!-- /content -->
