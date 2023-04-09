@@ -101,8 +101,9 @@
           /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
           /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-         
-         ctx.drawImage(img,0,0); //this code will transfer my same image to the second canvas
+          var canvas2 = document.getElementById('canvas2'); //this creates a call to my canvas2, by using javascript to describe my HTML
+          var ctx2 = canvas2.getContext('2d'); //this allows the javascript to see the image in the canvas1
+          ctx2.drawImage(img,0,0); //this code will transfer my same image to the second canvas
          
           /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
           
